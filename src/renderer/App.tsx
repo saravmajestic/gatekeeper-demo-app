@@ -1,4 +1,3 @@
-// import { dialog, shell } from 'electron';
 import { useState } from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
@@ -37,14 +36,7 @@ const Hello = () => {
             getJobStatus();
           }, INTERVAL);
         }
-        if (response.status === JobStatus.APPROVED) {
-          // dialog.showOpenDialog({ title: 'Hooray!!! success' });
-          return;
-        }
-        // eslint-disable-next-line promise/always-return
-        if (response.status === JobStatus.DECLINED) {
-          // dialog.showOpenDialog({ title: 'Oops!!! declined' });
-        }
+        return null;
       })
       .catch((error) => {
         console.error(error);
@@ -67,11 +59,23 @@ const Hello = () => {
       </div>
       <h1>Gatekeeper Demo App</h1>
       <div className="Hello">
-        <div>
+        <div className="lic-status">
           <div>Current status: </div>
           <div>{status} </div>
         </div>
-        <button onClick={startLicenseConnect} type="button">
+        {status === 'approved' && (
+          <div className="lic-success">Yay!! License added succssfully!</div>
+        )}
+        {status === 'declined' && (
+          <div className="lic-error">
+            Oops!! Could not authenticate! Please try again later.
+          </div>
+        )}
+        <button
+          onClick={startLicenseConnect}
+          type="button"
+          disabled={status === 'approved'}
+        >
           Connect License
         </button>
       </div>

@@ -61,3 +61,22 @@ a:hover {
   margin: 20px 0;
   flex-direction: column;
 }
+
+.lic-success {
+  font-size: 1.25em;
+  color: #37e73c;
+}
+
+.lic-error {
+  font-size: 1.25em;
+  color: #f47043;
+}
+
+.lic-status {
+  display: flex;
+  line-height: 2em;
+}
+.lic-status div:last-child {
+  font-size: 1.25em;
+  margin-left: 0.5em;
+}
